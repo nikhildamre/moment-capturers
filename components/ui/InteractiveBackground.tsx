@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 interface InteractiveBackgroundProps {
   className?: string
@@ -45,8 +45,8 @@ export default function InteractiveBackground({
       />
       <motion.div
         style={{ 
-          x: useSpring(useMotionValue(0).set(-x.get()), springConfig), 
-          y: useSpring(useMotionValue(0).set(-y.get()), springConfig) 
+          x: useTransform(x, (value) => -value),
+          y: useTransform(y, (value) => -value)
         }}
         className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-floralWhite/5 rounded-full blur-3xl"
       />
